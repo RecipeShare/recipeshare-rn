@@ -94,8 +94,6 @@ const Recipe = (props) => {
                 })
                 .catch(err => console.log('err in deleting like', err))
         }
-
-        
     }
 
     return (
