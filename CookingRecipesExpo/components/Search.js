@@ -6,41 +6,36 @@ import RecipeList from './RecipeList.js'
 
 const Search = () => {
     let [dish, setDish] = useState('')
-    let [recipes, setRecipes] = useState([])
+    let [recipeList, setRecipeList] = useState([])
 
-    useEffect(() =>{
-        axios
-        .get(
+    const getRecipeList = (dish) => {
+        axios.get(
           `https://recipeshare-development.herokuapp.com/recipes?title=${dish}`
         )
         .then(res => {
-            setRecipes([])
+            setRecipeList([])
             console.log('recipe count', res.data.length);
-            setRecipes(res.data);
+            setRecipeList(res.data);
         })
         .catch(err => console.log(err));
+    }
+
+    useEffect(() =>{
+        getRecipeList(dish);
     },[dish]);
 
     return(
         <View>
-				 <TextInput
-					style={styles.textInput}
-					placeholder="What dish are you looking for?"
-					placeholderTextColor="#D3D3D3"
-					value={dish}
-                    onChangeText={dish => setDish(dish)}
-                    //onSubmitEditing={grabRecipes}
-				/>
-                 {/* <TouchableOpacity style={styles.button}>
-                    <Button  
-                    color="white"    
-                    onPress={grabRecipes}
-                    title="Search"
-                    accessibilityLabel="Search"                   
-                    />
-                </TouchableOpacity> */}
+                <TextInput
+                style={styles.textInput}
+                placeholder="What dish are you looking for?"
+                placeholderTextColor="#D3D3D3"
+                value={dish}
+                onChangeText={dish => setDish(dish)}
+                />
+                
                 <ScrollView>
-                    {recipes.length>=1  && <RecipeList recipes={recipes} setRecipes={setRecipes} /> }
+                    {recipeList.length>=1  && <RecipeList recipeList={recipeList} setRecipeList={setRecipeList} /> }
                 </ScrollView>
         </View>
 
