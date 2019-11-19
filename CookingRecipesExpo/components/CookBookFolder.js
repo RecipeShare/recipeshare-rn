@@ -6,25 +6,30 @@ import styles from '../styles/recipe-styles';
 
 const CookBookFolder = (props) =>{
     const [folder, setFolder] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true);
    
     const course =  props.navigation.getParam('Course', 'params not passed');
 
     const grab =  async () =>{
         // console.log('course in grab', course);
         const axiosAuth = await axiosWithAuth();
-       axiosAuth.get(`https://recipeshare-development.herokuapp.com/cookbook?category=${course}`)
-      .then(res => {
-          setFolder(res.data);
-   })
-      .catch(err => console.log(err));
+        axiosAuth.get(`https://recipeshare-development.herokuapp.com/cookbook?category=${course}`)
+                .then(res => {
+                    setFolder(res.data);
+                })
+                .catch(err => console.log(err))
+                .finally(() => {
+                    setLoading(false);
+                })
     }
 
     useEffect( () =>{
         grab();
     },[]);
 
-
+    if (loading) {
+        return <Text>Still Loading</Text>
+    }
     return(
         <View style={{alignItems : 'center', justifyContent: 'center'}}>
             {folder.length ? 
