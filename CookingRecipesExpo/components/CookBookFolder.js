@@ -28,7 +28,7 @@ const CookBookFolder = (props) =>{
     },[]);
 
     if (loading) {
-        return <Text>Still Loading</Text>
+        return <Text>Loading...</Text>
     }
     return(
         <View style={{alignItems : 'center', justifyContent: 'center'}}>
