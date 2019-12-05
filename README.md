@@ -1,5 +1,14 @@
 # RecipeShare - written in React-Native
 
+<h2>To use image uploading, the AWS credentials must be specified in an auth.js file, placed at the root of the RecipeShareExpo directory</h2>
+
+module.exports = {
+    accessKey : 'AWS_ACCESS_KEY',
+    secretKey : 'SECRET_ACCESS_KEY',
+    region : 's3_bucket_region',
+    bucket : 's3_bucket_name'
+}
+
 <h2>Action Items to build on the React Native App:</h2>
 
 <ul>
@@ -21,3 +30,5 @@
  <li>Allow the user to upload a new image when forking and editing an existing recipe. (not sure on this one however.)</li>
  
 </ul>
+
+
