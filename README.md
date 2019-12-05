@@ -2,12 +2,12 @@
 
 <h2>To use image uploading, the AWS credentials must be specified in an auth.js file, placed at the root of the RecipeShareExpo directory</h2>
 
-module.exports = {
+```module.exports = {
     accessKey : 'AWS_ACCESS_KEY',
     secretKey : 'SECRET_ACCESS_KEY',
     region : 's3_bucket_region',
     bucket : 's3_bucket_name'
-}
+}```
 
 <h2>Action Items to build on the React Native App:</h2>
 
